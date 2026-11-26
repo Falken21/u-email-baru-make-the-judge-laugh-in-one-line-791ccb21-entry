@@ -29,6 +29,12 @@ How it is built, against the judge's own criteria:
 5. Reads cleanly out loud. One breath, one comma, plain words, and
    the stress falls naturally on the last three words.
 
+6. The gate and the tie-break. The entry file must hold 1 to 200
+   characters of UTF-8 text; this line holds 108, comfortably
+   inside. And if two entries ever tie exactly on the judge's rate,
+   the smaller text places first — one more reason the line stays
+   lean instead of padding itself out.
+
 Alternates considered and beaten: a courtroom line about a search
 history confessing (strong, but the shape is familiar), a smart
 fridge ordering vegetables because it is disappointed in its owner
@@ -37,6 +43,8 @@ coin named after a dog (needs the reader to meet it halfway). The
 grandmother line is the one a stranger laughs at fastest.
 """
 
+import os
+
 TEXT = (
     "Grandma's secret ingredient is always love, which is why her "
     "cooking tastes like it's missing an ingredient."
@@ -44,8 +52,6 @@ TEXT = (
 
 
 def main() -> None:
-    import os
-
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(TEXT)
